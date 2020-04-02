@@ -1,6 +1,6 @@
-import { TemplateAst } from '@angular/compiler';
 
-export interface SuperHero{
+
+export interface SuperHuman{
 superHeroName: String;
 alias: String;
 superPower: String;

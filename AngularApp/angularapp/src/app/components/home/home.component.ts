@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { SuperHuman } from '../../models/SuperHuman'
 
 @Component({
   selector: 'app-home',
