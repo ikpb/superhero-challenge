@@ -1,0 +1,11 @@
+com\ikpb\domain\SuperTeam.class
+com\ikpb\util\SessionFactoryUtil.class
+com\ikpb\config\WebMvcConfig.class
+com\ikpb\dao\SuperHumanDaoImpl.class
+com\ikpb\service\SuperHumanService.class
+com\ikpb\service\SuperHumanServiceImpl.class
+com\ikpb\config\AppConfig.class
+com\ikpb\domain\SuperHuman.class
+com\ikpb\config\WebAppInitializer.class
+com\ikpb\controller\SuperHumanController.class
+com\ikpb\dao\SuperHumanDAO.class
