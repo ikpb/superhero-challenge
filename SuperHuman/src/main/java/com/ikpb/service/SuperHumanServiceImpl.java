@@ -36,8 +36,8 @@ public class SuperHumanServiceImpl implements SuperHumanService{
 	}
 
 	@Override
-	public void deleteSuperHuman(int id) {
-		superHDao.deleteSuperHuman(id);
+	public void deleteSuperHuman(String name) {
+		superHDao.deleteSuperHuman(name);
 
 	}
 

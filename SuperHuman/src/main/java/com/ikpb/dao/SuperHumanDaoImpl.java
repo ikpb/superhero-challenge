@@ -45,7 +45,7 @@ public class SuperHumanDaoImpl implements SuperHumanDAO {
 	public void updateSuperHuman(SuperHuman superHuman) {
 		Session sess = sessionFactory.openSession();
 		Transaction tx = sess.beginTransaction();
-		SuperHuman oldSuperH = sess.byId(SuperHuman.class).load(superHuman.getId());
+		SuperHuman oldSuperH = sess.byId(SuperHuman.class).load(superHuman.getSuperHumanName());
 		oldSuperH.setSuperHumanName(superHuman.getSuperHumanName());
 		oldSuperH.setSuperPower(superHuman.getSuperPower());
 		oldSuperH.setWeakness(superHuman.getWeakness());
@@ -58,10 +58,10 @@ public class SuperHumanDaoImpl implements SuperHumanDAO {
 	}
 
 	@Override
-	public void deleteSuperHuman(int id) {
+	public void deleteSuperHuman(String name) {
 		Session sess = sessionFactory.openSession();
 		Transaction tx = sess.beginTransaction();
-		SuperHuman superH = sess.byId(SuperHuman.class).load(id);
+		SuperHuman superH = sess.byId(SuperHuman.class).load(name);
 		sess.delete(superH);
 		tx.commit();
 	}
@@ -75,10 +75,6 @@ public class SuperHumanDaoImpl implements SuperHumanDAO {
 
 	}
 
-	@Override
-	public SuperHuman getSuperHumanById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

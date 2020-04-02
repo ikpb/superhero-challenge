@@ -5,14 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Table(name="superhumans")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "superHumanName")
 public class SuperHuman {
 
-
-@GeneratedValue(strategy = GenerationType.IDENTITY)	
 
 @Id
 @Column(name="super_name")
@@ -30,6 +36,20 @@ private String weakness;
 @Column(name="alignementNumber")
 private int alignmentNumber;
 
+
+@ManyToOne
+@JoinColumn(name="team")
+@JsonIdentityReference(alwaysAsId = true)
+private SuperTeam team;
+
+
+
+public SuperTeam getTeam() {
+	return team;
+}
+public void setTeam(SuperTeam team) {
+	this.team = team;
+}
 public String getSuperHumanName() {
 	return superHumanName;
 }
@@ -60,19 +80,22 @@ public int getAlignmentNumber() {
 public void setAlignmentNumber(int alignmentNumber) {
 	this.alignmentNumber = alignmentNumber;
 }
-public SuperHuman() {
-	super();
-	// TODO Auto-generated constructor stub
-}
-public SuperHuman(int id, String superHumanName, String alias, String superPower, String weakness,
-		int alignmentNumber) {
-	super();
 
+
+public SuperHuman(String superHumanName, String alias, String superPower, String weakness, int alignmentNumber,
+		SuperTeam team) {
+	super();
 	this.superHumanName = superHumanName;
 	this.alias = alias;
 	this.superPower = superPower;
 	this.weakness = weakness;
 	this.alignmentNumber = alignmentNumber;
+	this.team = team;
+}
+
+public SuperHuman() {
+	super();
+	// TODO Auto-generated constructor stub
 }
 @Override
 public int hashCode() {
@@ -120,7 +143,7 @@ public boolean equals(Object obj) {
 }
 @Override
 public String toString() {
-	return "SuperHuman id=" + ", superHumanName=" + superHumanName + ", alias=" + alias + ", superPower="
+	return "superHumanName=" + superHumanName + ", alias=" + alias + ", superPower="
 			+ superPower + ", weakness=" + weakness + ", alignmentNumber=" + alignmentNumber;
 }
 

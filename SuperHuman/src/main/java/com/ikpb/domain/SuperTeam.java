@@ -1,10 +1,33 @@
 package com.ikpb.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+@Entity
+@Table(name = "super_team")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "teamName")
 public class SuperTeam {
+	@Id
+	@Column(name="team_name")
 	private String teamName;
-	private List<SuperHuman> superHuman;
+	@Column(name="alignment")
+	private int alignment;
+	
+
+	@OneToMany(mappedBy = "team", fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = SuperHuman.class)
+	private List<SuperHuman> superHuman = new ArrayList<SuperHuman>();
+	
+	
 	public SuperTeam(String teamName, List<SuperHuman> superHuman) {
 		super();
 		this.teamName = teamName;
@@ -14,11 +37,19 @@ public class SuperTeam {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	public String getTeamName() {
 		return teamName;
 	}
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
+	}
+	
+	public int getAlignment() {
+		return alignment;
+	}
+	public void setAlignment(int alignment) {
+		this.alignment = alignment;
 	}
 	public List<SuperHuman> getSuperHuman() {
 		return superHuman;
